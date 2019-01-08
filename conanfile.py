@@ -4,7 +4,7 @@ import os, shutil
 
 class X264Conan(ConanFile):
     name = "x264"
-    version = "0.157.r2935"
+    version = "0.152.r2854"
     description = "x264 is a free software library and application for encoding video streams into the H.264/MPEG-4 AVC compression format"
     url = "https://github.com/conanos/x264"
     homepage = "https://www.videolan.org/developers/x264.html"
@@ -51,7 +51,7 @@ class X264Conan(ConanFile):
             with tools.chdir(os.path.join(self._source_subfolder,"SMP")):
                 msbuild = MSBuild(self)
                 build_type = str(self.settings.build_type) + ("DLL" if self.options.shared else "")
-                msbuild.build("x264.sln",upgrade_project=True, build_type=build_type)
+                msbuild.build("libx264.sln",upgrade_project=True, build_type=build_type)
 
     def package(self):
         if self.settings.os == "Windows":
